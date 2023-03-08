@@ -57,7 +57,7 @@ class Solution {
      * @return ListNode
      */
     function mergeTwoLists($list1, $list2) {
-        if(empty($list2) && empty($list1)) return false;
+        /*if(empty($list2) && empty($list1)) return false;
         if(empty($list1)) return $list2;
         if(empty($list2)) return $list1;
 
@@ -94,7 +94,18 @@ class Solution {
             $res->next = $list2;
         }
 
-        return $head;
+        return $head;*/
+        
+        if(empty($list1)) return $list2;
+        if(empty($list2)) return $list1;
+
+        if($list1->val <= $list2->val){
+            $list1->next = $this->mergeTwoLists($list1->next, $list2);
+            return $list1;
+        }else{
+            $list2->next = $this->mergeTwoLists($list1, $list2->next);
+            return $list2;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
@@ -103,4 +114,14 @@ class Solution {
 合并链表，大体思路：
 1、基本方法，也是我目前提交的方案，首先处理表头，链处理，以及最后剩余部分的处理，简单思路，不做具体的说明在此
 2、这道题目是 递归 类别里面的题目，递归代码我还没看懂，看懂再做更新
+首先贴一下大佬的解释：
+https://leetcode.cn/problems/merge-two-sorted-lists/solutions/103891/yi-kan-jiu-hui-yi-xie-jiu-fei-xiang-jie-di-gui-by-/
+
+如下为个人理解：
+1、递归首先为 自己调用自己，这是基本用法
+2、主要点为两个：第一，搞清楚边界值，递归不能无线循环下去；第二，搞清楚这一层需要做什么事情
+
+对于这道题而言，我一直不理解的点在于，如何合并
+目前的理解是，递归的方案没有申请多余的空间，只是将小的值放在了前面，即小的值后面拼接的是大的值的(这部分可能是一整个的链表，而不仅仅是单个值)，
+与此同时将另外小的那个next当作下一层的另外一条链的链表头做输入。
 */
