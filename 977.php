@@ -59,3 +59,7 @@ class Solution {
 $aa = new Solution();
 $nums = [-7,-3,2,3,11];
 var_dump($aa->sortedSquares($nums));
+
+
+
+//这里不可以使用从小到大的比较原因是因为，负数的话，可能平方会大于正数，所以，需要比看谁大，然后大的放到后面，因为也是排好序了
