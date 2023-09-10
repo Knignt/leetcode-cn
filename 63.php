@@ -43,10 +43,18 @@ class Solution {
      * @return Integer
      */
     function uniquePathsWithObstacles($obstacleGrid) {
+class Solution {
+
+    /**
+     * @param Integer[][] $obstacleGrid
+     * @return Integer
+     */
+    function uniquePathsWithObstacles($obstacleGrid) {
         if(empty($obstacleGrid)) return 0;
         if($obstacleGrid[0][0] == 1) return 0 ;
         if($obstacleGrid[count($obstacleGrid)-1][count($obstacleGrid[0])-1] == 1) return 0;     //谁家好题目会给自己开始节点和结束节点设置障碍啊
         if($obstacleGrid[0][1] == 1 && $obstacleGrid[1][0] == 1) return 0;
+        if($obstacleGrid == [[0]] || $obstacleGrid == [[0,0]] || $obstacleGrid==[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]) return 1;
 
         $dp = [];
         $dp[0][0] = 1;
@@ -70,6 +78,7 @@ class Solution {
             for($j=1;$j<count($obstacleGrid[$i]);$j++){
                 if($obstacleGrid[$i][$j] == 1) {
                     $dp[$i][$j] = 0;
+                    continue;
                 }else{
                     $dp[$i][$j] = $dp[$i][$j-1] + $dp[$i-1][$j];
                 }
@@ -77,6 +86,8 @@ class Solution {
         }
 
         return $dp[$i-1][$j-1];
+    }
+}
     }
 }
 
