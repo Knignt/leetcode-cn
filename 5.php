@@ -34,7 +34,9 @@ class Solution {
         if(empty($s)) return 0;
         if(strlen($s) == 1) return $s;
 
-        $dp = [];
+        /*
+         使用动态规划dp数组形式，时间复杂度O(n^2)，空间复杂度O(n^2)，对于测试实例里面的例子，会超时
+         * $dp = [];
         $len = strlen($s);
         for($i=0;$i<$len;$i++){
             for($j=0;$j<$len;$j++){
@@ -58,12 +60,43 @@ class Solution {
             }
         }
 
+        return substr($s, $resi, $resj - $resi + 1);*/
+
+
+        /**
+        下面的这种算法，使用中心扩展法，
+         即单个单词以及两个单词为基准，左右扩展，如果新扩展的是相等的字符，则组成的为回文串
+         对于如果两个单词不一样怎么办？在extends里面进去，对于i 和j 是否一致进行了判断，也就是说会先判断两个单词为基础的是否为回文串，这个不用担心
+         另外，这里为什么只考虑两个单词和一个单词为基准，而不只考虑一个单词呢？
+         举例而言，比如abba这样的单词，如果只根据b单词来扩展，那么其实第一次扩展就会失败，第一次扩展时 s[i] 为a, s[j] 为b，不是回文串
+         *！！！这里需要注意，两个单词扩展时不存在 两个单词不一致的情况，即中心扩展词两个肯定一致，因为举不出来例子
+         **/
+        $len = strlen($s);
+        $resi = $resj = -1;
+        $maxLen = PHP_INT_MIN;
+        for($i=0;$i<$len;$i++){
+            $this->extend($s, $i, $i, $resi, $resj, $maxLen, $len);
+            $this->extend($s, $i, $i+1, $resi, $resj, $maxLen, $len);
+        }
+
         return substr($s, $resi, $resj - $resi + 1);
+    }
+
+    function extend($s, $i, $j, &$resi, &$resj, &$maxLen, $len){
+        while($j<$len && $i >= 0 && $s[$i] == $s[$j]){
+            if($j - $i +1 > $maxLen){
+                $maxLen = $j - $i + 1;
+                $resi = $i;
+                $resj = $j;
+            }
+            $i--;
+            $j++;
+        }
     }
 }
 
 $a = new Solution();
-$s = "borcdubqiupahpwjizjjbkncelfazeqynfbrnzuvbhjnyvrlkdyfyjjxnprfocrmisugizsgvhszooktdwhehojbrdbtgkiwkhpfjfcstwcajiuediebdhukqnroxbgtvottummbypokdljjvnthcbesoyigscekrqswdpalnjnhcnqrarxuufzzmkwizptyvjhpfidgmskuaggtpxqisdlyloznkarxofzeeyvteynluofuhbllyiszszbwnsglqjkignusarxsjvctpgiwnhdufmfpanfwxjwlmhgllzsmdpncbwnsbdtsvrjybynifywkulqnzprcxockbhrhvnwxrkvwumyieazclcviumvormynbryaziijpdinwatwqppamfiqfiojgwkvfzyxadyfjrgmtttvlgkqghgbcfhkigfojjkhskzenlpasyozcsuccdxhulcubsgomvcrbqwakrraesfifecmoztayrdjicypakrrneulfbqqxtrdelggedvloebqaztmfyfkhuonrognejxpesmwgnmnnnamvkxqvzrgzdqtvuhccryeowywmbixktnkqnwzlzfvloyqcageugmjqihyjxhssmhkfzxpzxmgpjgsduogfolnkkqizitbvvgrkczmojxnabruwwzxxqcevdwvtiigwckpxnnxxxdhxpgomncttjutrsvyrqcfwxhexhaguddkiesmfrqfjfdaqbkeqinwicphktffuwcazlmerdhraufbpcznbuipmymipxbsdhuesmcwnkdvilqbnkaglloswcpqzdggnhjdkkumfuzihilrpcvemwllicoqiugobhrwdxtoefynqmccamhdtxujfudbglmiwqklriolqfkknbmindxtljulnxhipsieyohnczddabrxzjmompbtnnxvivmoyfzfrxlufowtqzojfclmatthjtbhotdoheusnpirwicbtyrcuojsdmfcx";
+$s = "aabb";
 var_dump($a->longestPalindrome($s));
 
 
