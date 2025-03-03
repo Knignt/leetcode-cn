@@ -2,7 +2,7 @@ package main
 
 import (
 	"container/list"
-	"gotest/tree"
+	"leetcode-cn/tree"
 )
 
 /*

@@ -3,7 +3,7 @@ package main
 import (
 	"container/list"
 	"fmt"
-	"gotest/tree"
+	"leetcode-cn/tree"
 	"math"
 )
 

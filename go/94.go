@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gotest/tree"
+	"leetcode-cn/tree"
 	"math"
 )
 

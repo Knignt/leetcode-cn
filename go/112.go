@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"gotest/tree"
+	"leetcode-cn/tree"
+	"math"
 )
 
 /*
@@ -64,28 +65,33 @@ func hasPathSum(root *tree.TreeNode, targetSum int) bool {
 		nodeSum := sumStack[len(sumStack)-1]
 		sumStack = sumStack[:len(sumStack)-1]
 
-		if nodeSum+node.Val == targetSum {
-			return true
-		}
-
 		if node.Left != nil {
-			nodeStack = append(nodeStack, node.Left)
-			sumStack = append(sumStack, nodeSum+root.Val)
+			if nodeSum+node.Left.Val == targetSum && node.Left.Right == nil && node.Left.Left == nil {
+				return true
+			} else {
+				nodeStack = append(nodeStack, node.Left)
+				sumStack = append(sumStack, nodeSum+node.Left.Val)
+			}
 		}
 
 		if node.Right != nil {
-			nodeStack = append(nodeStack, node.Right)
-			sumStack = append(sumStack, nodeSum+root.Val)
+			if nodeSum+node.Right.Val == targetSum && node.Right.Right == nil && node.Right.Left == nil {
+				return true
+			} else {
+				nodeStack = append(nodeStack, node.Right)
+				sumStack = append(sumStack, nodeSum+node.Right.Val)
+			}
 		}
-		fmt.Println(sumStack)
 	}
 
 	return false
 }
 
-func main() {
+func main112() {
 
-	a := []int{1, 2, 3}
+	a := []int{1, 2, 3}                                                                        //false
+	a = []int{5, 4, 8, 11, math.MinInt, 13, 4, 7, 2, math.MinInt, math.MinInt, math.MinInt, 1} //true
+	a = []int{1, 2, math.MinInt, 3, math.MinInt, 4, math.MinInt, 5}                            //true
 	root := tree.BuildTree(a)
-	fmt.Println(hasPathSum(root, 5))
+	fmt.Println(hasPathSum(root, 15))
 }

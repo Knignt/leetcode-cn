@@ -1,6 +1,6 @@
 package main
 
-import "gotest/tree"
+import "leetcode-cn/tree"
 
 /*
 给你一棵二叉树的根节点 root ，返回其节点值的 后序遍历 。
