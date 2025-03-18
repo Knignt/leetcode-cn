@@ -38,7 +38,7 @@ import (
  * }
  */
 
-func levelOrder(root *tree.TreeNode) [][]int {
+func levelOrder1(root *tree.TreeNode) [][]int {
 	if root == nil {
 		return nil
 	}
@@ -70,5 +70,5 @@ func levelOrder(root *tree.TreeNode) [][]int {
 func main102() {
 	a := []int{3, 9, 20, math.MinInt, math.MinInt, 15, 7}
 	root := tree.BuildTree(a)
-	fmt.Println(levelOrder(root))
+	fmt.Println(levelOrder1(root))
 }

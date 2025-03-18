@@ -102,7 +102,7 @@ func main() {
 	//a = []int{1, 2, 2, 3, 3, math.MinInt, math.MinInt, 4, 4}                           //false
 	//a = []int{1, 2, 2, 3, math.MinInt, math.MinInt, 3, 4, math.MinInt, math.MinInt, 4} //false
 	//a = []int{1, math.MinInt, 2, math.MinInt, 3}
-	a = []int{1, 2, 2, 3, math.MinInt, math.MinInt, 3, 4, math.MinInt, math.MinInt, 4}
+	a = []int{1, 2, 2, 3, math.MinInt, math.MinInt, 3, 4, math.MinInt, math.MinInt, 4} //false
 	root := tree.BuildTree(a)
 	fmt.Println(isBalanced(root))
 }

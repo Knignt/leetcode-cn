@@ -26,7 +26,7 @@ s 仅由小写英文字母组成。
 如果是相邻的直接pop栈，最后栈里面剩余的就是 结果
 */
 
-func removeDuplicates(s string) string {
+func removeDuplicates1(s string) string {
 	if len(s) == 0 {
 		return ""
 	}
