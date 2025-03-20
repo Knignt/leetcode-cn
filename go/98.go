@@ -35,6 +35,10 @@ import (
 -231 <= Node.val <= 231 - 1
 */
 
+/*
+中序遍历结果天然具有严格递增的特性，所以选择中序遍历，这样的话，只需要从最左边的叶子节点开始，查看是否是一个递增的序列即可
+*/
+
 func isValidBST(root *tree.TreeNode) bool {
 	if root == nil {
 		return false
