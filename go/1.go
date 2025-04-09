@@ -33,7 +33,7 @@ import "fmt"
 一次遍历，如果target减去当前值没有，那么就放到哈希表里面，如果减去存在，就直接返回
 */
 
-func twoSum(nums []int, target int) []int {
+func twoSum1(nums []int, target int) []int {
 	if nums == nil {
 		return nil
 	}
@@ -53,5 +53,5 @@ func main11111111111111() {
 	a := []int{2, 7, 11, 15}
 	//a := []int{3, 2, 4}
 	//a := []int{3, 3}
-	fmt.Println(twoSum(a, 9))
+	fmt.Println(twoSum1(a, 9))
 }

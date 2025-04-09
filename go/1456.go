@@ -94,9 +94,6 @@ func maxVowels(s string, k int) int {
 		if maxResult < result {
 			maxResult = result
 		}
-		if result == k {
-			return k
-		}
 	}
 
 	return maxResult

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"leetcode-cn/tree"
 	"math"
+	"os"
 )
 
 /*
@@ -75,6 +76,9 @@ func pathSum(root *tree.TreeNode, targetSum int) [][]int {
 			sumStack = append(sumStack, nodeSum+node.Right.Val)
 			path = append(path, node.Right)
 		}
+
+		fmt.Println(stack, path, sumStack)
+		os.Exit(1)
 
 	}
 
