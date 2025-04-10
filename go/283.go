@@ -24,10 +24,24 @@ func moveZeroes(nums []int) {
 		return
 	}
 
-	//i, j := 0, 1
+	i, j := 0, 0
+	for j < len(nums) && nums[j] == 0 {
+		j++
+	}
 
+	for j < len(nums) {
+		if nums[j] != 0 {
+			nums[i], nums[j] = nums[j], nums[i]
+			i++
+		}
+		j++
+	}
+
+	return
 }
 
 func main() {
-
+	a := []int{1, 1, 0, 0, 2, 2, 2}
+	a = []int{0, 0}
+	moveZeroes(a)
 }
