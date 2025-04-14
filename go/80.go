@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 /*
 给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使得出现次数超过两次的元素只出现两次 ，返回删除后数组的新长度。
 不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
@@ -32,20 +36,28 @@ for (int i = 0; i < len; i++) {
 nums 已按升序排列
 */
 
+/*
+用一个栈记录去重后的元素，如果当前元素等于栈顶下方那个数（倒数第二个数），那么不能入栈（否则会有三个一样的数），反之可以入栈。
+*/
+
 func removeDuplicates(nums []int) int {
-	if len(nums) <= 1 {
-		return 0
+	if len(nums) <= 2 {
+		return len(nums)
 	}
 
-	j := 0
-	lenNums := len(nums)
-	for j < lenNums {
-
+	resultLen := 2
+	for i := 2; i < len(nums); i++ {
+		if nums[i] != nums[resultLen-2] { //如果当前的的元素和栈顶下方的数一样，则不入栈；如果不一致，则入栈。
+			nums[resultLen] = nums[i] //为什么不使用栈顶元素呢？主要是栈顶元素会改变。
+			resultLen++
+		}
 	}
 
-	return 0
+	return min(resultLen, len(nums))
 }
 
 func main() {
+	a := []int{1, 1, 1, 2, 2, 3}
+	fmt.Println(removeDuplicates(a))
 
 }
