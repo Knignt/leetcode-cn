@@ -51,7 +51,7 @@ type MyLinkedList struct {
 	cap  int
 }
 
-func Constructor() MyLinkedList {
+func Constructor1() MyLinkedList {
 	return MyLinkedList{
 		val:  1,
 		next: nil,
@@ -76,7 +76,7 @@ func (this *MyLinkedList) Get(index int) int {
 }
 
 func (this *MyLinkedList) AddAtHead(val int) {
-	newHead := Constructor()
+	newHead := Constructor1()
 	newHead.val = val
 	newHead.cap = this.cap + 1
 	newHead.next = this
@@ -88,7 +88,7 @@ func (this *MyLinkedList) AddAtTail(val int) {
 	for temp.next != nil {
 		temp = temp.next
 	}
-	newHead := Constructor()
+	newHead := Constructor1()
 	newHead.val = val
 	temp.next = &newHead
 	this.cap++
@@ -101,7 +101,7 @@ func (this *MyLinkedList) AddAtIndex(index int, val int) {
 		i++
 		this = this.next
 	}
-	newHead := Constructor()
+	newHead := Constructor1()
 	newHead.val = val
 	newHead.next = this.next
 	this.next = &newHead
@@ -135,7 +135,7 @@ func printL(l *MyLinkedList) {
  */
 
 func main() {
-	obj := Constructor()
+	obj := Constructor1()
 	index := 1
 
 	obj.AddAtHead(1)
