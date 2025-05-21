@@ -33,6 +33,41 @@ func firstMissingPositive(nums []int) int {
 		return -1
 	}
 
+	//对于只有单个数字的数组的处理
+	if len(nums) == 1 {
+		if nums[0] == 1 {
+			return 2
+		} else {
+			return 1
+		}
+	}
+
+	//这里不是O(n^2)的时间复杂度，是O(n),这里是为了一直替换到这个位置，比如1放在0位置上,2放在1位置上
+	n := len(nums)
+	for i := 0; i < n; i++ {
+		//这里对于小于0的不做处理
+		//要判断下标是否存在在当前数组里面，如果不存在，则不处理
+		//最关键的是已交换的数据不再做交换
+		//确保nums[i]要放到 nums[nums[i]-1]的位置去,并且之前已交换的不做交换.
+		for nums[i] > 0 && nums[i]-1 <= n && nums[i] <= n && nums[i] != nums[nums[i]-1] {
+			nums[i], nums[nums[i]-1] = nums[nums[i]-1], nums[i]
+		}
+	}
+
+	for i := 0; i < n; i++ {
+		if nums[i] != i+1 {
+			return i + 1
+		}
+	}
+
+	return n + 1
+}
+
+func firstMissingPositive1(nums []int) int {
+	if len(nums) <= 0 {
+		return -1
+	}
+
 	if len(nums) == 1 {
 		if nums[0] == 1 {
 			return 2
@@ -71,13 +106,15 @@ func main() {
 
 	a := []int{0, -1, 3, 1} //2
 	//a = []int{3, 4, -1, 1}  //2
-	//a = []int{1, 2, 0}      //3
+	a = []int{1, 2, 0} //3
 	//a = []int{-1, -2, -60, 40, 43} //1
 	//a = []int{1}                   //2
 	//a = []int{1, 1000}             //2
 
-	a = []int{0, 3} //1
+	//a = []int{0, 3} //1
 	a = []int{2, 2} //1
+	a = []int{1, 1}
+	a = []int{7, 8, 9, 11, 12}
 	fmt.Println(firstMissingPositive(a))
 
 }

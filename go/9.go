@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func isPalindrome(x int) bool {
+func isPalindrome12(x int) bool {
 	if x < 0 {
 		return false
 	}
@@ -24,5 +24,5 @@ func isPalindrome(x int) bool {
 
 func main() {
 	a := 232
-	fmt.Println(isPalindrome(a))
+	fmt.Println(isPalindrome12(a))
 }
